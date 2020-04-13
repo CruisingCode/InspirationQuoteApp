@@ -12,7 +12,7 @@ public class Jokes implements Serializable
 
     @SerializedName("categories")
     @Expose
-    private List<Object> categories = new ArrayList<Object>();
+    private List<String> categories = new ArrayList<String>();
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -31,7 +31,7 @@ public class Jokes implements Serializable
     @SerializedName("value")
     @Expose
     private String value;
-    private final static long serialVersionUID = -6640042759396553372L;
+    private final static long serialVersionUID = -496106849527531520L;
 
     /**
      * No args constructor for use in serialization
@@ -50,7 +50,7 @@ public class Jokes implements Serializable
      * @param url
      * @param updatedAt
      */
-    public Jokes(List<Object> categories, String createdAt, String iconUrl, String id, String updatedAt, String url, String value) {
+    public Jokes(List<String> categories, String createdAt, String iconUrl, String id, String updatedAt, String url, String value) {
         super();
         this.categories = categories;
         this.createdAt = createdAt;
@@ -61,15 +61,15 @@ public class Jokes implements Serializable
         this.value = value;
     }
 
-    public List<Object> getCategories() {
+    public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Object> categories) {
+    public void setCategories(List<String> categories) {
         this.categories = categories;
     }
 
-    public Jokes withCategories(List<Object> categories) {
+    public Jokes withCategories(List<String> categories) {
         this.categories = categories;
         return this;
     }
