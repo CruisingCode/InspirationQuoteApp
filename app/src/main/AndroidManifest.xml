@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.inspirationquote">
 
+
+
+    <!-- use internets for query-->
+
     <uses-permission android:name="android.permission.INTERNET"/>
 
 

@@ -8,14 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.lang.ref.SoftReference;
 
 public class MainActivity extends AppCompatActivity {
 
-//url address
+    //url address
     private String API = "https://api.chucknorris.io/jokes/random?category=dev";
 
-    //button
+
 
     Button pressJoke;
     TextView randomJoke;
@@ -25,27 +27,46 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        randomJoke = (TextView)findViewById(R.id.textView);
-        pressJoke = (Button)findViewById(R.id.button);
+        randomJoke = (TextView) findViewById(R.id.textView);
+        pressJoke = (Button) findViewById(R.id.button);
 
+        //call API from web when clicking button
         pressJoke.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               AsyncTask<String,Void,String> asyncTask = new AsyncTask<String, Void, String>() {
+
+                // create asynctask to connect to url/
+                AsyncTask<Void, Void, String> GetJokes = new AsyncTask<Void, Void, String>() {
+
+                    //connect to url
                     @Override
-                    protected String doInBackground(String... strings) {
+                    protected String doInBackground(Void... voids) {
                         Helper helper = new Helper();
-                        return  helper.getHTTPData(API);
-
-
+                        return helper.getHTTPData(API);
                     }
 
+                    //get joke from response and set to the textview
+                    @Override
+                    protected void onPostExecute(String s) {
+                        Jokes jokes = new Gson().fromJson(s, Jokes.class);
+                        randomJoke.setText(jokes.getValue());
+                        if (randomJoke.getVisibility() == View.INVISIBLE)
+                            randomJoke.setVisibility(View.VISIBLE);
+                        super.onPostExecute(s);
+                    }
 
                 };
 
-               asyncTask.execute();
-            }
-        });
+                GetJokes.execute();
 
+            }
+
+
+        });
     }
+
+
 }
+
+
+
