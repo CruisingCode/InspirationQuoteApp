@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 
-//convert json to java via
+//convert json to java 
 
 public class Jokes implements Serializable
 {

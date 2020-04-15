@@ -19,9 +19,11 @@ public class Helper {
 
     }
 
-    //initaitte connection to internet
+
 
 public String getHTTPData(String urlString){
+
+//initaitte connection to internet, send request, read response and build string
 
         try{
             URL url = new URL(urlString);
